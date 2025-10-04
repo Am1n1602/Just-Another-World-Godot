@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb6l307h67xuc"]
+
+[ext_resource type="Shader" uid="uid://civ6m4ev3k7wb" path="res://scripts/World-Map.gdshader" id="1_6uykf"]
+[ext_resource type="Texture2D" uid="uid://p8c766ije60h" path="res://scenes/Tileset.png" id="2_fehax"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xfsiy"]
+shader = ExtResource("1_6uykf")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6uykf"]
+height = 44.3471
+
+[node name="Spike-White" type="AnimatableBody2D"]
+material = SubResource("ShaderMaterial_xfsiy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+use_parent_material = true
+position = Vector2(0, -2)
+rotation = -2.3719
+texture = ExtResource("2_fehax")
+region_enabled = true
+region_rect = Rect2(2.94433, 3.00176, 17.9065, 17.6432)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+use_parent_material = true
+position = Vector2(0.239396, -17.8106)
+rotation = -1.5708
+scale = Vector2(0.779507, 1.15803)
+texture = ExtResource("2_fehax")
+region_enabled = true
+region_rect = Rect2(4.52431, 15.115, 38.4464, 17.3799)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_6uykf")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwj73n5kakuij"]
+
+[ext_resource type="Shader" uid="uid://civ6m4ev3k7wb" path="res://scripts/World-Map.gdshader" id="1_0g0fw"]
+[ext_resource type="Texture2D" uid="uid://p8c766ije60h" path="res://scenes/Tileset.png" id="2_a2ob5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uufa2"]
+shader = ExtResource("1_0g0fw")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_toote"]
+size = Vector2(43, 11)
+
+[node name="Platform-white" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_uufa2")
+texture = ExtResource("2_a2ob5")
+region_enabled = true
+region_rect = Rect2(0.626545, 48.5826, 46.8797, 13.5176)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_toote")
+one_way_collision = true
