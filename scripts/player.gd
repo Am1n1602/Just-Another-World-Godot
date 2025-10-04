@@ -29,6 +29,7 @@ func _ready() -> void:
 	light_frame.hide()
 	dead = false
 	Global.playerAlive = true
+	Global.isAttacking = false
 	Global.playerStartingPosition = self.position
 	can_take_damage = true
 
@@ -70,10 +71,12 @@ func _physics_process(delta: float) -> void:
 		# attack handling
 		if not is_attacking:
 			if Input.is_action_just_pressed("Attack_1"):
+				Global.isAttacking = true
 				is_attacking = true
 				attack_type = "Attack-1"
 				handle_attack(attack_type)
 			elif Input.is_action_just_pressed("Attack_2"):
+				Global.isAttacking = true
 				is_attacking = true
 				attack_type = "Attack-2"
 			set_damage(attack_type)
@@ -151,20 +154,21 @@ func toggle_damage_collisions(attack_type):
 	damage_zone_collision.disabled = true
 
 func switch_frames() -> void:
-	using_dark_frame = !using_dark_frame
-	var old_flip = anim_sprite.flip_h
-	
-	if using_dark_frame:
-		dark_frame.show()
-		anim_sprite = dark_frame
-		light_frame.hide()
-	else:
-		light_frame.show()
-		anim_sprite = light_frame
-		dark_frame.hide()
-	
-	# restore facing direction
-	anim_sprite.flip_h = old_flip
+	if not is_attacking:
+		using_dark_frame = !using_dark_frame
+		var old_flip = anim_sprite.flip_h
+		
+		if using_dark_frame:
+			dark_frame.show()
+			anim_sprite = dark_frame
+			light_frame.hide()
+		else:
+			light_frame.show()
+			anim_sprite = light_frame
+			dark_frame.hide()
+		
+		# restore facing direction
+		anim_sprite.flip_h = old_flip
 
 
 func toggle_flip_dir(direction: float) -> void:
@@ -185,7 +189,9 @@ func die_and_respawn() -> void:
 func _on_dark_frame_animation_finished() -> void:
 	if anim_sprite.animation.begins_with("Attack"):
 		is_attacking = false
+		Global.isAttacking = false
 
 func _on_light_frame_animation_finished() -> void:
 	if anim_sprite.animation.begins_with("Attack"):
 		is_attacking = false
+		Global.isAttacking = false

@@ -14,8 +14,9 @@ func _process(_delta: float) -> void:
 		toggle_world()
 
 func toggle_world() -> void:
-	using_dark_world = !using_dark_world
-	set_world_state(using_dark_world)
+	if !Global.isAttacking:
+		using_dark_world = !using_dark_world
+		set_world_state(using_dark_world)
 
 func set_world_state(dark_active: bool) -> void:
 	# Dark world enabled, Light world disabled

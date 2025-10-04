@@ -16,6 +16,6 @@ var high_score : int
 var current_score: int
 var previous_score: int
 var max_wave: int
-
+var isAttacking: bool
 var game_active=  false
 var show_wave_ui = false
