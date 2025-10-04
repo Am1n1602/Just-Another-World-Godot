@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		
 		# horizontal movement
 		var direction = Input.get_axis("Move_left", "Move_right")
-		Global.playerCurrentPosition = self.position
+		
 		if direction:
 			
 			velocity.x = direction * SPEED
@@ -86,6 +86,7 @@ func _physics_process(delta: float) -> void:
 			handle_movement_animation(direction)
 		check_hitbox()
 	move_and_slide()
+	Global.playerCurrentPosition = self.position
 	
 func check_hitbox():
 	var hitbox_areas = $PlayerHitBox.get_overlapping_areas()
@@ -106,6 +107,7 @@ func take_damage(damage):
 			if health<=health_min:
 				health=health_min
 				dead= true
+				Global.playerStartingPosition = Global.playerCurrentPosition
 				Global.playerAlive = false 
 				handle_dead_anim()
 			take_damage_cooldown(1.0)

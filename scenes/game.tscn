@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://x4da16jm3agp"]
+[gd_scene load_steps=16 format=3 uid="uid://x4da16jm3agp"]
 
 [ext_resource type="Script" uid="uid://b6tjlrlkcna4c" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://5xrxmqd7hh7p" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -15,12 +15,27 @@ distance = -11.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p57ef"]
 size = Vector2(670, 130)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gee14"]
+size = Vector2(89, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tnpc"]
+size = Vector2(65, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtaks"]
+size = Vector2(127, 74.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvpfn"]
+size = Vector2(49, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dinhu"]
+size = Vector2(20, 51)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_iywne")
 ninja_scene = ExtResource("4_lbhrr")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(26, 469)
+position = Vector2(14, 465)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(2, -14)
@@ -64,30 +79,30 @@ grow_horizontal = 0
 
 [node name="CurrentScore" type="RichTextLabel" parent="UI/Control"]
 layout_mode = 0
-offset_left = -246.0
-offset_top = 1.0
-offset_right = -14.0
-offset_bottom = 33.0
+offset_left = -266.0
+offset_top = 10.0
+offset_right = 71.0
+offset_bottom = 47.0
 theme_override_fonts/normal_font = ExtResource("7_gee14")
 theme_override_font_sizes/normal_font_size = 32
-text = "Current Score:"
+text = "Current Score: "
 
 [node name="HighScore" type="RichTextLabel" parent="UI/Control"]
 layout_mode = 0
-offset_left = -244.0
-offset_top = 32.0
-offset_right = -39.0
-offset_bottom = 90.0
+offset_left = -261.0
+offset_top = 40.0
+offset_right = 27.0
+offset_bottom = 106.0
 theme_override_fonts/normal_font = ExtResource("7_gee14")
 theme_override_font_sizes/normal_font_size = 32
 text = "High Score: "
 
 [node name="WaveLeft" type="RichTextLabel" parent="UI/Control"]
 layout_mode = 0
-offset_left = -242.0
-offset_top = 89.0
-offset_right = -102.0
-offset_bottom = 177.0
+offset_left = -261.0
+offset_top = 98.0
+offset_right = -121.0
+offset_bottom = 186.0
 theme_override_fonts/normal_font = ExtResource("7_gee14")
 theme_override_font_sizes/normal_font_size = 32
 text = "Waves Left: "
@@ -110,10 +125,10 @@ position = Vector2(1097, -48)
 shape = SubResource("RectangleShape2D_p57ef")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1052.0
-offset_top = -762.0
-offset_right = 2330.0
-offset_bottom = 1053.0
+offset_left = -1010.0
+offset_top = -748.0
+offset_right = 2372.0
+offset_bottom = 1067.0
 color = Color(0.169245, 0.169245, 0.169245, 1)
 
 [node name="Muzic" type="AudioStreamPlayer2D" parent="."]
@@ -148,5 +163,59 @@ to switch Worlds
 Have fun!!"
 scroll_active = false
 horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Instructions"]
+offset_left = 661.0
+offset_top = 490.0
+offset_right = 735.0
+offset_bottom = 520.0
+theme_override_colors/font_color = Color(0.32549, 0.411765, 0.717647, 1)
+theme_override_fonts/font = ExtResource("7_gee14")
+theme_override_font_sizes/font_size = 32
+text = "GO UP"
+
+[node name="Label3" type="Label" parent="Instructions"]
+offset_left = 939.0
+offset_top = 212.0
+offset_right = 1013.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0.32549, 0.411765, 0.717647, 1)
+theme_override_fonts/font = ExtResource("7_gee14")
+theme_override_font_sizes/font_size = 32
+text = "GO UP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Instructions"]
+offset_left = 204.0
+offset_top = 133.0
+offset_right = 342.0
+offset_bottom = 163.0
+theme_override_colors/font_color = Color(0.32549, 0.411765, 0.717647, 1)
+theme_override_fonts/font = ExtResource("7_gee14")
+theme_override_font_sizes/font_size = 32
+text = "GO RIGHT ->"
+
+[node name="KillZone2" parent="." instance=ExtResource("3_lnu2h")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone2"]
+position = Vector2(407, 595)
+shape = SubResource("RectangleShape2D_gee14")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="KillZone2"]
+position = Vector2(536, 603.5)
+shape = SubResource("RectangleShape2D_0tnpc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="KillZone2"]
+position = Vector2(169, 374.375)
+shape = SubResource("RectangleShape2D_vtaks")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="KillZone2"]
+position = Vector2(121.5, 324)
+shape = SubResource("RectangleShape2D_kvpfn")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="KillZone2"]
+position = Vector2(71, 266)
+shape = SubResource("RectangleShape2D_dinhu")
 
 [connection signal="area_entered" from="WaveArea" to="." method="_on_wave_area_area_entered"]
